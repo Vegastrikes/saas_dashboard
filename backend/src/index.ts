@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 
-dotenv.config();
+import { authRoutes } from "./routes/auth";
 
 const app = express();
 
@@ -11,9 +10,7 @@ app.use(express.json());
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
-// TODO: mount routes
-// app.use("/auth", authRoutes);
-// app.use("/projects", projectsRoutes);
+app.use("/auth", authRoutes);
 
 const port = Number(process.env.PORT ?? 4000);
 app.listen(port, () => {
