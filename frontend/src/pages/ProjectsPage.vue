@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
-import { createProject, listProjects } from "../services/projects";
+import { useRouter } from "vue-router";
+import { createProject, deleteProject, listProjects } from "../services/projects";
 import type { Project, ProjectStatus } from "../types/projects";
+
+const router = useRouter();
 
 const loading = ref(false);
 const error = ref<string | null>(null);
@@ -54,6 +57,20 @@ async function submitCreate() {
   } finally {
     creating.value = false;
   }
+}
+
+async function remove(p: Project) {
+  if (!confirm(`Delete "${p.name}"?`)) return;
+  try {
+    await deleteProject(p.id);
+    await load();
+  } catch (e) {
+    error.value = e instanceof Error ? e.message : "Failed to delete project";
+  }
+}
+
+function edit(p: Project) {
+  router.push({ name: "project-edit", params: { id: p.id } });
 }
 
 function nextPage() {
@@ -151,6 +168,7 @@ onMounted(() => {
             <th style="padding:12px 16px; border-bottom:1px solid #eee;">Name</th>
             <th style="padding:12px 16px; border-bottom:1px solid #eee;">Status</th>
             <th style="padding:12px 16px; border-bottom:1px solid #eee;">Created</th>
+            <th style="padding:12px 16px; border-bottom:1px solid #eee;">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -158,10 +176,28 @@ onMounted(() => {
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">{{ p.name }}</td>
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">{{ p.status }}</td>
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">{{ new Date(p.created_at).toLocaleString() }}</td>
+            <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">
+              <div style="display:flex; gap:8px;">
+                <button
+                  type="button"
+                  @click="edit(p)"
+                  style="padding:6px 10px; border:1px solid #333; border-radius:8px; background:transparent; cursor:pointer;"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  @click="remove(p)"
+                  style="padding:6px 10px; border:1px solid #333; border-radius:8px; background:transparent; cursor:pointer;"
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
           </tr>
 
           <tr v-if="!loading && items.length === 0">
-            <td colspan="3" style="padding:16px; opacity:.7;">No projects found.</td>
+            <td colspan="4" style="padding:16px; opacity:.7;">No projects found.</td>
           </tr>
         </tbody>
       </table>

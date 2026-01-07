@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage.vue";
 import RegisterPage from "../pages/RegisterPage.vue";
 import DashboardPage from "../pages/DashboardPage.vue";
 import ProjectsPage from "../pages/ProjectsPage.vue";
+import ProjectEditPage from "../pages/ProjectEditPage.vue";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -13,7 +14,9 @@ export const router = createRouter({
     { path: "/register", name: "register", component: RegisterPage, meta: { public: true } },
 
     { path: "/dashboard", name: "dashboard", component: DashboardPage },
+
     { path: "/projects", name: "projects", component: ProjectsPage },
+    { path: "/projects/:id/edit", name: "project-edit", component: ProjectEditPage },
 
     { path: "/", redirect: "/dashboard" },
     { path: "/:pathMatch(.*)*", redirect: "/dashboard" },

@@ -20,3 +20,23 @@ export async function createProject(params: {
 }): Promise<{ project: Project }> {
   return api.post<{ project: Project }>(`/projects`, { name: params.name, status: params.status });
 }
+
+export async function getProject(id: number): Promise<{ project: Project }> {
+  return api.get<{ project: Project }>(`/projects/${id}`);
+}
+
+export async function updateProject(params: {
+  id: number;
+  name?: string;
+  status?: ProjectStatus;
+}): Promise<{ project: Project }> {
+  const body: Record<string, unknown> = {};
+  if (params.name !== undefined) body.name = params.name;
+  if (params.status !== undefined) body.status = params.status;
+
+  return api.put<{ project: Project }>(`/projects/${params.id}`, body);
+}
+
+export async function deleteProject(id: number): Promise<void> {
+  await api.del<void>(`/projects/${id}`);
+}
