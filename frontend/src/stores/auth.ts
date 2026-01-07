@@ -52,7 +52,7 @@ export const useAuthStore = defineStore("auth", {
       // Ensures router guards can wait for the auth state to be known
       try {
         if (!this.token) return;
-        const res = await api.get<{ user: User }>("/auth/me", this.token);
+        const res = await api.get<{ user: User }>("/auth/me");
         this.user = res.user;
       } catch {
         this.clearSession();

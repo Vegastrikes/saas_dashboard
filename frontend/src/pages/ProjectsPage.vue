@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
-import { useAuthStore } from "../stores/auth";
+import { onMounted, ref, watch } from "vue";
 import { createProject, listProjects } from "../services/projects";
 import type { Project, ProjectStatus } from "../types/projects";
 
-const auth = useAuthStore();
-
-const token = computed(() => auth.token);
 const loading = ref(false);
 const error = ref<string | null>(null);
 
@@ -22,13 +18,10 @@ const newStatus = ref<ProjectStatus>("active");
 const creating = ref(false);
 
 async function load() {
-  if (!token.value) return;
-
   loading.value = true;
   error.value = null;
   try {
     const res = await listProjects({
-      token: token.value,
       page: page.value,
       pageSize: pageSize.value,
       status: status.value,
@@ -43,7 +36,6 @@ async function load() {
 }
 
 async function submitCreate() {
-  if (!token.value) return;
   const name = newName.value.trim();
   if (name.length < 2) {
     error.value = "Project name must be at least 2 characters";
@@ -53,7 +45,7 @@ async function submitCreate() {
   creating.value = true;
   error.value = null;
   try {
-    await createProject({ token: token.value, name, status: newStatus.value });
+    await createProject({ name, status: newStatus.value });
     newName.value = "";
     newStatus.value = "active";
     await load();

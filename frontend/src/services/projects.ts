@@ -2,7 +2,6 @@ import { api } from "./api";
 import type { ProjectsListResponse, Project, ProjectStatus } from "../types/projects";
 
 export async function listProjects(params: {
-  token: string;
   page: number;
   pageSize: number;
   status?: ProjectStatus | "";
@@ -12,13 +11,12 @@ export async function listProjects(params: {
   q.set("pageSize", String(params.pageSize));
   if (params.status) q.set("status", params.status);
 
-  return api.get<ProjectsListResponse>(`/projects?${q.toString()}`, params.token);
+  return api.get<ProjectsListResponse>(`/projects?${q.toString()}`);
 }
 
 export async function createProject(params: {
-  token: string;
   name: string;
   status: ProjectStatus;
 }): Promise<{ project: Project }> {
-  return api.post<{ project: Project }>(`/projects`, { name: params.name, status: params.status }, params.token);
+  return api.post<{ project: Project }>(`/projects`, { name: params.name, status: params.status });
 }
