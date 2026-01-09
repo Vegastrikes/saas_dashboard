@@ -18,19 +18,19 @@ async function logout() {
 
 <template>
   <div>
-    <nav style="display:flex; gap:12px; padding:12px; border-bottom:1px solid #ddd; align-items:center;">
-      <RouterLink v-if="isAuthed" to="/dashboard">Dashboard</RouterLink>
-      <RouterLink v-if="isAuthed" to="/projects">Projects</RouterLink>
+    <nav class="flex items-center gap-4 border-b border-slate-200 px-6 py-3">
+      <RouterLink v-if="isAuthed" to="/dashboard" class="router-link">Dashboard</RouterLink>
+      <RouterLink v-if="isAuthed" to="/projects" class="router-link">Projects</RouterLink>
 
-      <span style="flex:1;"></span>
+      <span class="flex-1"></span>
 
       <template v-if="!isAuthed">
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
+        <RouterLink to="/login" class="router-link">Login</RouterLink>
+        <RouterLink to="/register" class="router-link">Register</RouterLink>
       </template>
 
       <template v-else>
-        <span style="font-size: 14px; opacity: 0.8;">{{ auth.user?.email }}</span>
+        <span class="text-sm text-slate-600">{{ auth.user?.email }}</span>
         <AppButton variant="ghost" @click="logout">Logout</AppButton>
       </template>
     </nav>

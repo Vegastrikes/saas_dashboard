@@ -4,6 +4,10 @@ import { useRoute, useRouter } from "vue-router";
 import { getProject, updateProject } from "../services/projects";
 import type { ProjectStatus } from "../types/projects";
 
+import AppCard from "../components/ui/AppCard.vue";
+import AppButton from "../components/ui/AppButton.vue";
+import AppInput from "../components/ui/AppInput.vue";
+
 const route = useRoute();
 const router = useRouter();
 
@@ -57,53 +61,41 @@ onMounted(load);
 </script>
 
 <template>
-  <main style="padding: 24px; max-width: 640px;">
-    <header style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 16px;">
-      <h1 style="margin:0;">Edit project</h1>
-      <button
-        type="button"
-        @click="$router.push({ name: 'projects' })"
-        style="padding:8px 10px; border:1px solid #333; border-radius:8px; background:transparent; cursor:pointer;"
-      >
-        Back
-      </button>
+  <main class="mx-auto max-w-5xl px-6 py-6">
+    <header class="flex justify-between items-center mb-4">
+      <h1 class="m-0">Edit project</h1>
+      <AppButton variant="ghost" @click="$router.push({ name: 'projects' })">Back</AppButton>
     </header>
 
     <p v-if="loading">Loading…</p>
-    <p v-else-if="error" style="color:#b00020;">{{ error }}</p>
+    <p v-else-if="error" class="text-rose-600">{{ error }}</p>
 
-    <form v-else @submit.prevent="save" style="display:flex; flex-direction:column; gap:12px;">
-      <label style="display:flex; flex-direction:column; gap:6px;">
-        <span>Name</span>
-        <input
-          v-model="name"
-          :disabled="saving"
-          style="padding:10px; border:1px solid #ccc; border-radius:8px;"
-        />
-      </label>
-
-      <label style="display:flex; flex-direction:column; gap:6px;">
-        <span>Status</span>
-        <select
-          v-model="status"
-          :disabled="saving"
-          style="padding:10px; border:1px solid #ccc; border-radius:8px;"
-        >
-          <option value="active">active</option>
-          <option value="paused">paused</option>
-          <option value="completed">completed</option>
-        </select>
-      </label>
-
-      <div style="display:flex; gap:10px;">
-        <button
-          type="submit"
-          :disabled="saving"
-          style="padding:10px 14px; border:1px solid #333; border-radius:8px; cursor:pointer; background:transparent;"
-        >
-          {{ saving ? "Saving…" : "Save" }}
-        </button>
-      </div>
-    </form>
+    <AppCard v-else>
+      <form @submit.prevent="save" class="flex flex-col gap-3">
+        <label class="flex flex-col gap-1.5">
+          <span>Name</span>
+          <AppInput v-model="name" :disabled="saving" />
+        </label>
+  
+        <label class="flex flex-col gap-3">
+          <span>Status</span>
+          <select
+            v-model="status"
+            :disabled="saving"
+            class="p-2.5 border border-slate-300 rounded-lg opacity-70"
+          >
+            <option value="active">active</option>
+            <option value="paused">paused</option>
+            <option value="completed">completed</option>
+          </select>
+        </label>
+  
+        <div class="flex gap-2.5">
+          <AppButton type="submit" :disabled="saving || !name || !status">
+            {{ loading ? "Saving…..." : "Save" }}
+          </AppButton>
+        </div>
+      </form>
+    </AppCard>
   </main>
 </template>

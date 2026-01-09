@@ -25,33 +25,32 @@ onMounted(load);
 </script>
 
 <template>
-  <main style="padding: 24px;">
-    <h1 style="margin-bottom: 16px;">Dashboard</h1>
+  <main class="mx-auto max-w-5xl px-6 py-6">
+    <h1 class="mb-4">Dashboard</h1>
 
     <p v-if="loading">Loading…</p>
-    <p v-else-if="error" style="color:#b00020;">{{ error }}</p>
+    <p v-else-if="error" class="text-rose-500">{{ error }}</p>
 
     <section
-      v-else-if="stats"
-      style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px;"
+      v-else-if="stats" class="grid grid-cols-4 gap-4"
     >
       <AppCard title="Total projects">
-        <div style="font-size:32px;">{{ stats.total }}</div>
+        <div class="text-3xl">{{ stats.total }}</div>
       </AppCard>
 
       <AppCard title="Active projects">
-        <div style="font-size:32px;">{{ stats.active }}</div>
+        <div class="text-3xl">{{ stats.active }}</div>
       </AppCard>
       
       <AppCard title="Paused projects">
-        <div style="font-size:32px;">{{ stats.paused }}</div>
+        <div class="text-3xl">{{ stats.paused }}</div>
       </AppCard>
 
       <AppCard title="Completed projects">
-        <div style="font-size:32px;">{{ stats.completed }}</div>
+        <div class="text-3xl">{{ stats.completed }}</div>
       </AppCard>
     </section>
 
-    <p v-else style="opacity:.7;">No stats available.</p>
+    <p v-else>No stats available.</p>
   </main>
 </template>

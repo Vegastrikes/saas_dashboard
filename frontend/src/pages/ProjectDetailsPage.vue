@@ -58,12 +58,12 @@ onMounted(load);
 </script>
 
 <template>
-  <main style="padding:24px; max-width: 820px;">
-    <header style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom: 16px;">
-      <h1 style="margin:0;">Project</h1>
-      <div style="display:flex; gap:8px;">
+  <main class="mx-auto max-w-5xl px-6 py-6">
+    <header class="flex justify-between items-center gap-3 mb-4">
+      <h1 class="m-0">Project</h1>
+      <div class="flex gap-2">
         <AppButton variant="ghost" @click="goBack">Back</AppButton>
-        <AppButton variant="ghost" @click="goEdit" :disabled="loading || !project">Edit</AppButton>
+        <AppButton variant="primary" @click="goEdit" :disabled="loading || !project">Edit</AppButton>
         <AppButton variant="danger" @click="remove" :disabled="loading || !project || deleting">
           {{ deleting ? "Deleting…" : "Delete" }}
         </AppButton>
@@ -71,32 +71,24 @@ onMounted(load);
     </header>
 
     <p v-if="loading">Loading…</p>
-    <p v-else-if="error" style="color:#b00020;">{{ error }}</p>
+    <p v-else-if="error" class="text-rose-600">{{ error }}</p>
 
-    <div v-else-if="project" style="display:flex; flex-direction:column; gap:16px;">
+    <div v-else-if="project" class="flex flex-col gap-4">
       <AppCard title="Overview">
-        <div style="display:grid; grid-template-columns: 140px 1fr; row-gap:10px; column-gap:16px;">
-          <div style="opacity:.7;">Name</div>
+        <div class="grid grid-cols-[auto_1fr] gap-y-[2.5] gap-x-4">
+          <div class="opacity-70">Name</div>
           <div>{{ project.name }}</div>
 
-          <div style="opacity:.7;">Status</div>
+          <div class="opacity-70">Status</div>
           <div>{{ project.status }}</div>
 
-          <div style="opacity:.7;">Created</div>
+          <div class="opacity-70">Created</div>
           <div>{{ new Date(project.created_at).toLocaleString() }}</div>
 
-          <div style="opacity:.7;">Updated</div>
+          <div class="opacity-70">Updated</div>
           <div>{{ new Date(project.updated_at).toLocaleString() }}</div>
         </div>
       </AppCard>
-
-      <AppCard title="Notes">
-        <p style="margin:0; opacity:.8;">
-          Placeholder section.
-        </p>
-      </AppCard>
     </div>
-
-    <p v-else style="opacity:.7;">Not found.</p>
   </main>
 </template>

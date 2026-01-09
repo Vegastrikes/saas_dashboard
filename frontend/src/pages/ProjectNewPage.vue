@@ -44,25 +44,27 @@ function cancel() {
 </script>
 
 <template>
-  <main style="padding:24px; max-width: 720px;">
-    <header style="display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom: 16px;">
-      <h1 style="margin:0;">New project</h1>
+  <main class="mx-auto max-w-5xl px-6 py-6">
+    <header class="mb-4 flex items-center justify-between gap-3">
+      <h1 class="m-0 text-xl font-semibold text-slate-900">New project</h1>
       <AppButton variant="ghost" @click="cancel">Back</AppButton>
     </header>
 
     <AppCard title="Details">
-      <form @submit.prevent="submit" style="display:flex; flex-direction:column; gap:12px;">
-        <label style="display:flex; flex-direction:column; gap:6px;">
-          <span>Name</span>
+      <form @submit.prevent="submit" class="flex flex-col gap-3">
+        <label class="flex flex-col gap-1.5">
+          <span class="text-sm font-medium text-slate-700">Name</span>
           <AppInput v-model="name" :disabled="saving" />
         </label>
 
-        <label style="display:flex; flex-direction:column; gap:6px;">
-          <span>Status</span>
+        <label class="flex flex-col gap-1.5">
+          <span class="text-sm font-medium text-slate-700">Status</span>
           <select
             v-model="status"
             :disabled="saving"
-            style="padding:10px; border:1px solid #ccc; border-radius:8px;"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition
+                   focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10
+                   disabled:cursor-not-allowed disabled:bg-slate-50"
           >
             <option value="active">active</option>
             <option value="paused">paused</option>
@@ -70,7 +72,7 @@ function cancel() {
           </select>
         </label>
 
-        <div style="display:flex; gap:10px; align-items:center; margin-top: 6px;">
+        <div class="mt-1.5 flex items-center gap-2.5">
           <AppButton type="submit" :disabled="saving">
             {{ saving ? "Creating…" : "Create" }}
           </AppButton>
@@ -79,7 +81,9 @@ function cancel() {
           </AppButton>
         </div>
 
-        <p v-if="error" style="margin:0; color:#b00020;">{{ error }}</p>
+        <p v-if="error" class="m-0 text-sm text-rose-700">
+          {{ error }}
+        </p>
       </form>
     </AppCard>
   </main>

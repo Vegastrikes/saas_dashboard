@@ -14,20 +14,23 @@ const props = withDefaults(
   }
 );
 
-const base =
-  "padding:8px 12px; border-radius:8px; cursor:pointer; background:transparent; border:1px solid #333;";
-
-const variantStyle: Record<Variant, string> = {
-  primary: "border:1px solid #333;",
-  ghost: "border:1px solid #ccc; opacity:0.9;",
-  danger: "border:1px solid #b00020; color:#b00020;",
+const variants: Record<Variant, string> = {
+  primary:
+    "cursor-pointer border border-slate-900 bg-slate-500 text-white hover:bg-blue-500 hover:border-slate-800 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-500",
+  ghost:
+    "cursor-pointer border border-slate-300 bg-white text-slate-900 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed",
+  danger:
+    "cursor-pointer border border-rose-600 bg-rose-100 text-slate-900 hover:bg-rose-500 hover:border-rose-500 disabled:opacity-50 disabled:cursor-not-allowed",
 };
-
-const styleText = `${base} ${variantStyle[props.variant]}`;
 </script>
 
 <template>
-  <button :type="type" :disabled="disabled" :style="styleText">
+  <button
+    :type="props.type"
+    :disabled="props.disabled"
+    class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium transition"
+    :class="variants[props.variant]"
+  >
     <slot />
   </button>
 </template>

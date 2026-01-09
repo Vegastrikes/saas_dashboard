@@ -11,9 +11,6 @@ const emit = defineEmits<{
   (e: "update:modelValue", value: string): void;
 }>();
 
-const baseStyle =
-  "padding:10px; border:1px solid #ccc; border-radius:8px; outline:none;";
-
 function onInput(e: Event) {
   const el = e.target as HTMLInputElement | null;
   emit("update:modelValue", el?.value ?? "");
@@ -28,6 +25,6 @@ function onInput(e: Event) {
     :placeholder="props.placeholder"
     :disabled="props.disabled"
     :autocomplete="props.autocomplete"
-    :style="baseStyle"
+    class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10 disabled:cursor-not-allowed disabled:bg-slate-50"
   />
 </template>

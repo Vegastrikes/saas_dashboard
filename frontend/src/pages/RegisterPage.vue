@@ -43,37 +43,37 @@ async function submit() {
 </script>
 
 <template>
-  <main style="padding: 24px; max-width: 420px;">
-    <h1 style="margin-bottom: 12px;">Create account</h1>
-
-    <form @submit.prevent="submit" style="display:flex; flex-direction:column; gap:12px;">
-      <label style="display:flex; flex-direction:column; gap:6px;">
-        <span>Email</span>
-        <AppInput v-model="email" type="email" autocomplete="email" :disabled="loading" />
-      </label>
-
-      <label style="display:flex; flex-direction:column; gap:6px;">
-        <span>Password</span>
-        <AppInput v-model="password" type="password" autocomplete="current-password" :disabled="loading" />
-      </label>
-
-      <label style="display:flex; flex-direction:column; gap:6px;">
-        <span>Confirm password</span>
-        <AppInput v-model="password" type="password" autocomplete="confirm-password" :disabled="loading" />
-      </label>
-
-      <AppButton type="submit" :disabled="loading || !email || !password">
-        {{ loading ? "Creating..." : "Create account" }}
-      </AppButton>
-
-      <p v-if="error" style="margin:0; color:#b00020;">
-        {{ error }}
-      </p>
-
-      <p style="margin:0;">
-        Already have an account?
-        <RouterLink to="/login">Sign in</RouterLink>
-      </p>
-    </form>
+  <main class="mx-auto max-w-5xl px-6 py-6">
+    <AppCard title="Register">
+      <form @submit.prevent="submit" class="flex flex-col gap-3">
+        <label class="flex flex-col gap-1.5">
+          <span>Email</span>
+          <AppInput v-model="email" type="email" autocomplete="email" :disabled="loading" />
+        </label>
+  
+        <label class="flex flex-col gap-1.5">
+          <span>Password</span>
+          <AppInput v-model="password" type="password" autocomplete="current-password" :disabled="loading" />
+        </label>
+  
+        <label class="flex flex-col gap-1.5">
+          <span>Confirm password</span>
+          <AppInput v-model="confirmPassword" type="password" autocomplete="confirm-password" :disabled="loading" />
+        </label>
+  
+        <AppButton type="submit" :disabled="loading || !email || !password">
+          {{ loading ? "Creating..." : "Create account" }}
+        </AppButton>
+  
+        <p v-if="error" class="m-0 text-rose-600">
+          {{ error }}
+        </p>
+  
+        <p class="m-0">
+          Already have an account?
+          <RouterLink to="/login" class="router-link">Sign in</RouterLink>
+        </p>
+      </form>
+    </AppCard>
   </main>
 </template>
