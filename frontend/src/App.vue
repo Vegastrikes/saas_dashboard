@@ -6,6 +6,8 @@ import { useAuthStore } from "./stores/auth";
 const auth = useAuthStore();
 const router = useRouter();
 
+import AppButton from "./components/ui/AppButton.vue";
+
 const isAuthed = computed(() => auth.isAuthenticated);
 
 async function logout() {
@@ -29,13 +31,7 @@ async function logout() {
 
       <template v-else>
         <span style="font-size: 14px; opacity: 0.8;">{{ auth.user?.email }}</span>
-        <button
-          type="button"
-          @click="logout"
-          style="padding:8px 10px; border:1px solid #333; border-radius:8px; cursor:pointer; background:transparent;"
-        >
-          Logout
-        </button>
+        <AppButton variant="ghost" @click="logout">Logout</AppButton>
       </template>
     </nav>
 

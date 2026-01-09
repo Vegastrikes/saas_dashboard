@@ -4,6 +4,11 @@ import { useRouter } from "vue-router";
 import { createProject, deleteProject, listProjects } from "../services/projects";
 import type { Project, ProjectStatus } from "../types/projects";
 
+import AppButton from "../components/ui/AppButton.vue";
+import AppInput from "../components/ui/AppInput.vue";
+import AppCard from "../components/ui/AppCard.vue";
+import AppTable from "../components/ui/AppTable.vue";
+
 const router = useRouter();
 
 const loading = ref(false);
@@ -116,12 +121,11 @@ onMounted(() => {
       </div>
     </header>
 
-    <section style="border:1px solid #ddd; border-radius:12px; padding:16px; margin-bottom: 16px;">
-      <h2 style="margin:0 0 12px;">Create project</h2>
+    <AppCard title="Create project" style="margin-bottom:16px;">
       <form @submit.prevent="submitCreate" style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;">
         <label style="display:flex; flex-direction:column; gap:6px;">
           <span>Name</span>
-          <input v-model="newName" :disabled="creating" style="padding:10px; border:1px solid #ccc; border-radius:8px; min-width:260px;" />
+          <AppInput v-model="newName" :disabled="creating" />
         </label>
 
         <label style="display:flex; flex-direction:column; gap:6px;">
@@ -133,17 +137,14 @@ onMounted(() => {
           </select>
         </label>
 
-        <button
-          type="submit"
-          :disabled="creating"
-          style="padding:10px 14px; border:1px solid #333; border-radius:8px; cursor:pointer; background:transparent;"
-        >
+        <AppButton type="submit" :disabled="creating">
           {{ creating ? "Creating..." : "Create" }}
-        </button>
+        </AppButton>
       </form>
 
       <p v-if="error" style="margin:12px 0 0; color:#b00020;">{{ error }}</p>
-    </section>
+    </AppCard>
+
 
     <section style="border:1px solid #ddd; border-radius:12px; overflow:hidden;">
       <div style="padding: 12px 16px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
@@ -162,7 +163,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <table style="width:100%; border-collapse:collapse;">
+      <AppTable>
         <thead>
           <tr style="text-align:left; background:#fafafa;">
             <th style="padding:12px 16px; border-bottom:1px solid #eee;">Name</th>
@@ -178,20 +179,8 @@ onMounted(() => {
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">{{ new Date(p.created_at).toLocaleString() }}</td>
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">
               <div style="display:flex; gap:8px;">
-                <button
-                  type="button"
-                  @click="edit(p)"
-                  style="padding:6px 10px; border:1px solid #333; border-radius:8px; background:transparent; cursor:pointer;"
-                >
-                  Edit
-                </button>
-                <button
-                  type="button"
-                  @click="remove(p)"
-                  style="padding:6px 10px; border:1px solid #333; border-radius:8px; background:transparent; cursor:pointer;"
-                >
-                  Delete
-                </button>
+                <AppButton variant="ghost" @click="edit(p)">Edit</AppButton>
+                <AppButton variant="danger" @click="remove(p)">Delete</AppButton>
               </div>
             </td>
           </tr>
@@ -200,7 +189,7 @@ onMounted(() => {
             <td colspan="4" style="padding:16px; opacity:.7;">No projects found.</td>
           </tr>
         </tbody>
-      </table>
+      </AppTable>
     </section>
   </main>
 </template>

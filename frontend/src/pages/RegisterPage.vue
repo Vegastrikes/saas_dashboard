@@ -3,6 +3,10 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "../stores/auth";
 
+import AppInput from "../components/ui/AppInput.vue";
+import AppButton from "../components/ui/AppButton.vue";
+import AppCard from "../components/ui/AppCard.vue";
+
 const auth = useAuthStore();
 const router = useRouter();
 
@@ -45,47 +49,22 @@ async function submit() {
     <form @submit.prevent="submit" style="display:flex; flex-direction:column; gap:12px;">
       <label style="display:flex; flex-direction:column; gap:6px;">
         <span>Email</span>
-        <input
-          v-model="email"
-          type="email"
-          autocomplete="email"
-          required
-          :disabled="loading"
-          style="padding:10px; border:1px solid #ccc; border-radius:8px;"
-        />
+        <AppInput v-model="email" type="email" autocomplete="email" :disabled="loading" />
       </label>
 
       <label style="display:flex; flex-direction:column; gap:6px;">
         <span>Password</span>
-        <input
-          v-model="password"
-          type="password"
-          autocomplete="new-password"
-          required
-          :disabled="loading"
-          style="padding:10px; border:1px solid #ccc; border-radius:8px;"
-        />
+        <AppInput v-model="password" type="password" autocomplete="current-password" :disabled="loading" />
       </label>
 
       <label style="display:flex; flex-direction:column; gap:6px;">
         <span>Confirm password</span>
-        <input
-          v-model="confirmPassword"
-          type="password"
-          autocomplete="new-password"
-          required
-          :disabled="loading"
-          style="padding:10px; border:1px solid #ccc; border-radius:8px;"
-        />
+        <AppInput v-model="password" type="password" autocomplete="confirm-password" :disabled="loading" />
       </label>
 
-      <button
-        type="submit"
-        :disabled="loading"
-        style="padding:10px; border:1px solid #333; border-radius:8px; cursor:pointer;"
-      >
+      <AppButton type="submit" :disabled="loading || !email || !password">
         {{ loading ? "Creating..." : "Create account" }}
-      </button>
+      </AppButton>
 
       <p v-if="error" style="margin:0; color:#b00020;">
         {{ error }}

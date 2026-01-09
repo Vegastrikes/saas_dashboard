@@ -3,6 +3,8 @@ import { onMounted, ref } from "vue";
 import { getDashboardStats } from "../services/stats";
 import type { DashboardStats } from "../types/stats";
 
+import AppCard from "../components/ui/AppCard.vue";
+
 const loading = ref(true);
 const error = ref<string | null>(null);
 const stats = ref<DashboardStats | null>(null);
@@ -33,25 +35,21 @@ onMounted(load);
       v-else-if="stats"
       style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:16px;"
     >
-      <div style="border:1px solid #ddd; border-radius:12px; padding:16px;">
-        <strong>Total projects</strong>
+      <AppCard title="Total projects">
         <div style="font-size:32px;">{{ stats.total }}</div>
-      </div>
+      </AppCard>
 
-      <div style="border:1px solid #ddd; border-radius:12px; padding:16px;">
-        <strong>Active</strong>
+      <AppCard title="Active projects">
         <div style="font-size:32px;">{{ stats.active }}</div>
-      </div>
-
-      <div style="border:1px solid #ddd; border-radius:12px; padding:16px;">
-        <strong>Paused</strong>
+      </AppCard>
+      
+      <AppCard title="Paused projects">
         <div style="font-size:32px;">{{ stats.paused }}</div>
-      </div>
+      </AppCard>
 
-      <div style="border:1px solid #ddd; border-radius:12px; padding:16px;">
-        <strong>Completed</strong>
+      <AppCard title="Completed projects">
         <div style="font-size:32px;">{{ stats.completed }}</div>
-      </div>
+      </AppCard>
     </section>
 
     <p v-else style="opacity:.7;">No stats available.</p>
