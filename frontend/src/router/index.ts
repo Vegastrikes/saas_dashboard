@@ -7,6 +7,7 @@ import DashboardPage from "../pages/DashboardPage.vue";
 import ProjectsPage from "../pages/ProjectsPage.vue";
 import ProjectDetailsPage from "../pages/ProjectDetailsPage.vue";
 import ProjectEditPage from "../pages/ProjectEditPage.vue";
+import ProjectNewPage from "../pages/ProjectNewPage.vue";
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +20,7 @@ export const router = createRouter({
     { path: "/projects", name: "projects", component: ProjectsPage },
     { path: "/projects/:id", name: "project-details", component: ProjectDetailsPage },
     { path: "/projects/:id/edit", name: "project-edit", component: ProjectEditPage },
+    { path: "/projects/new", name: "project-new", component: ProjectNewPage },
 
     { path: "/", redirect: "/dashboard" },
     { path: "/:pathMatch(.*)*", redirect: "/dashboard" },

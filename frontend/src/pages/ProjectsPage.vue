@@ -43,6 +43,10 @@ async function load() {
   }
 }
 
+function goNew() {
+  router.push({ name: "project-new" });
+}
+
 async function submitCreate() {
   const name = newName.value.trim();
   if (name.length < 2) {
@@ -97,7 +101,10 @@ onMounted(() => {
 <template>
   <main style="padding: 24px;">
     <header style="display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom: 16px;">
-      <h1 style="margin:0;">Projects</h1>
+      <div style="display: flex; gap:12px">
+        <h1 style="margin:0;">Projects</h1>
+        <AppButton @click="goNew">New project</AppButton>
+      </div>
 
       <div style="display:flex; gap:12px; align-items:center;">
         <label style="display:flex; gap:8px; align-items:center;">
@@ -120,31 +127,6 @@ onMounted(() => {
         </label>
       </div>
     </header>
-
-    <AppCard title="Create project" style="margin-bottom:16px;">
-      <form @submit.prevent="submitCreate" style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;">
-        <label style="display:flex; flex-direction:column; gap:6px;">
-          <span>Name</span>
-          <AppInput v-model="newName" :disabled="creating" />
-        </label>
-
-        <label style="display:flex; flex-direction:column; gap:6px;">
-          <span>Status</span>
-          <select v-model="newStatus" :disabled="creating" style="padding:10px; border:1px solid #ccc; border-radius:8px;">
-            <option value="active">active</option>
-            <option value="paused">paused</option>
-            <option value="completed">completed</option>
-          </select>
-        </label>
-
-        <AppButton type="submit" :disabled="creating">
-          {{ creating ? "Creating..." : "Create" }}
-        </AppButton>
-      </form>
-
-      <p v-if="error" style="margin:12px 0 0; color:#b00020;">{{ error }}</p>
-    </AppCard>
-
 
     <section style="border:1px solid #ddd; border-radius:12px; overflow:hidden;">
       <div style="padding: 12px 16px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
