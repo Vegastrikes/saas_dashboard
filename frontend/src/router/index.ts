@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage.vue";
 import RegisterPage from "../pages/RegisterPage.vue";
 import DashboardPage from "../pages/DashboardPage.vue";
 import ProjectsPage from "../pages/ProjectsPage.vue";
+import ProjectDetailsPage from "../pages/ProjectDetailsPage.vue";
 import ProjectEditPage from "../pages/ProjectEditPage.vue";
 
 export const router = createRouter({
@@ -16,6 +17,7 @@ export const router = createRouter({
     { path: "/dashboard", name: "dashboard", component: DashboardPage },
 
     { path: "/projects", name: "projects", component: ProjectsPage },
+    { path: "/projects/:id", name: "project-details", component: ProjectDetailsPage },
     { path: "/projects/:id/edit", name: "project-edit", component: ProjectEditPage },
 
     { path: "/", redirect: "/dashboard" },

@@ -174,7 +174,11 @@ onMounted(() => {
         </thead>
         <tbody>
           <tr v-for="p in items" :key="p.id">
-            <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">{{ p.name }}</td>
+            <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">
+              <RouterLink :to="{ name: 'project-details', params: { id: p.id } }">
+                {{ p.name }}
+              </RouterLink>
+            </td>
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">{{ p.status }}</td>
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">{{ new Date(p.created_at).toLocaleString() }}</td>
             <td style="padding:12px 16px; border-bottom:1px solid #f0f0f0;">
