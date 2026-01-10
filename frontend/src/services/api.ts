@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.BASE_URL as string;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
