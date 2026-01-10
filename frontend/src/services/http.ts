@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_API_BASE_URL as string;
+const baseURL = import.meta.env.BASE_URL as string;
 
 export async function apiGet<T>(path: string): Promise<T> {
   const res = await fetch(`${baseURL}${path}`);
