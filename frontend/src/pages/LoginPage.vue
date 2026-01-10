@@ -39,7 +39,7 @@ async function submit() {
 </script>
 
 <template>
-  <main class="mx-auto max-w-5xl px-6 py-6">
+  <main class="mx-auto max-w-lg px-6 py-6">
     <AppCard title="Login">
       <form @submit.prevent="submit" class="flex flex-col gap-3">
         <label class="flex flex-col gap-1.5">
