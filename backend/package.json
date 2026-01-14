@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "node --env-file=.env ./node_modules/.bin/ts-node-dev --respawn src/index.ts",
+    "dev": "node --env-file=.env.development ./node_modules/.bin/ts-node-dev --respawn src/index.ts",
     "build": "tsc",
-    "start": "node --env-file=.env dist/index.js"
+    "start": "node --env-file=.env.production dist/index.js"
   },
   "keywords": [],
   "author": "",

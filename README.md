@@ -58,7 +58,7 @@ docker compose up -d
 ### 2) Backend Setup
 ```bash
 cd backend
-cp .env.example .env
+cp .env.example .env.development
 npm install
 npm run dev
 ```
@@ -66,7 +66,7 @@ npm run dev
 ### 2) Frontend Setup
 ```bash
 cd frontend
-cp .env.example .env
+cp .env.example .env.development
 npm install
 npm run dev
 ```
