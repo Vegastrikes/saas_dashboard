@@ -45,30 +45,15 @@ A small full-stack dashboard app with authentication, protected pages, CRUD for 
 ## Local Development
 
 ### Prereqs
-- Node.js 22+
-- Docker (for Postgres)
+- Node.js 20+
+- Docker
 
-### 1) Start Postgres (Docker)
+### Start Project
 From repo root:
 
 ```bash
+cp .env.example .env
 docker compose up -d
-```
-
-### 2) Backend Setup
-```bash
-cd backend
-cp .env.example .env.development
-npm install
-npm run dev
-```
-
-### 2) Frontend Setup
-```bash
-cd frontend
-cp .env.example .env.development
-npm install
-npm run dev
 ```
 
 ### API Routes Summary

@@ -22,7 +22,7 @@ export default defineConfig(({mode}) => {
       host: env.VITE_HOST,
       port: Number(env.VITE_PORT),
       strictPort: true,
-      allowedHosts: [env.VITE_ALLOWEDHOST1]
+      allowedHosts: [env.VITE_ALLOWED_HOST_1]
     }
   }
 })

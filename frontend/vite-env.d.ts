@@ -3,7 +3,7 @@ interface ImportMetaEnv {
   readonly VITE_BASE: string
   readonly VITE_HOST: string
   readonly VITE_PORT: string
-  readonly VITE_ALLOWEDHOST1: string
+  readonly VITE_ALLOWED_HOST_1: string
 }
 
 interface ImportMeta {
