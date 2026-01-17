@@ -123,7 +123,7 @@ onMounted(() => {
           </tr>
 
           <tr v-if="!loading && items.length === 0">
-            <td colspan="4" class="px-4 py-8">No projects found.</td>
+            <td colspan="3" class="px-4 py-8">No projects found.</td>
           </tr>
         </tbody>
       </AppTable>
