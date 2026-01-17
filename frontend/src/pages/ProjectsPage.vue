@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { deleteProject, listProjects } from "../services/projects";
+import { listProjects } from "../services/projects";
 import type { Project, ProjectStatus } from "../types/projects";
 
 import AppButton from "../components/ui/AppButton.vue";
