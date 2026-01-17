@@ -62,7 +62,7 @@ function cancel() {
           <select
             v-model="status"
             :disabled="saving"
-            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none transition
                    focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10
                    disabled:cursor-not-allowed disabled:bg-slate-50"
           >
