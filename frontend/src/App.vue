@@ -1,19 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRouter } from "vue-router";
 import { useAuthStore } from "./stores/auth";
 
 const auth = useAuthStore();
-const router = useRouter();
 
-import AppButton from "./components/ui/AppButton.vue";
+import UserCircle from "./components/UserCircle.vue";
 
 const isAuthed = computed(() => auth.isAuthenticated);
-
-async function logout() {
-  await auth.logout();
-  await router.replace("/login");
-}
 </script>
 
 <template>
@@ -30,8 +23,7 @@ async function logout() {
       </template>
 
       <template v-else>
-        <span class="text-sm text-slate-600">{{ auth.user?.email }}</span>
-        <AppButton variant="ghost" @click="logout">Logout</AppButton>
+        <UserCircle></UserCircle>
       </template>
     </nav>
 
