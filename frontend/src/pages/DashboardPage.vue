@@ -32,7 +32,7 @@ onMounted(load);
     <p v-else-if="error" class="text-rose-500">{{ error }}</p>
 
     <section
-      v-else-if="stats" class="grid grid-cols-4 gap-4"
+      v-else-if="stats" class="grid grid-cols-1 lg:grid-cols-4 gap-4"
     >
       <AppCard title="Total projects">
         <div class="text-3xl">{{ stats.total }}</div>
