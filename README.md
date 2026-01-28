@@ -2,6 +2,8 @@
 
 A small full-stack dashboard app with authentication, protected pages, CRUD for projects, and a stats dashboard.
 
+Visit [saas-dashboard.ozerkozay.dev](https://saas-dashboard.ozerkozay.dev) for the live demo.
+
 ## Tech Stack
 
 **Frontend**
